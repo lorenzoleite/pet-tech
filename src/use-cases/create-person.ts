@@ -1,10 +1,10 @@
-import { Person } from '@/entities/person.entity';
+import { IPerson } from '@/entities/models/person.interface';
 import { IPersonRepository } from '@/repositories/person.repository.interface';
 
 export class CreatePersonUseCase {
   constructor(private personRepository: IPersonRepository) {}
 
-  async handler(person: Person): Promise<Person | undefined> {
+  async handler(person: IPerson): Promise<IPerson | undefined> {
     return this.personRepository.create(person);
   }
 }

@@ -1,13 +1,5 @@
 import { IAddressRepository } from '@/repositories/address.repository.interface';
-
-interface IAddress {
-  id?: number;
-  street: string;
-  city: string;
-  state: string;
-  zip_code: string;
-  person_id?: string;
-}
+import { IAddress } from '@/entities/models/address.interface';
 
 export class CreateAddressUseCase {
   constructor(private addressRepository: IAddressRepository) {}
