@@ -8,7 +8,7 @@ export async function create(request: FastifyRequest, reply: FastifyReply) {
     city: z.string(),
     state: z.string(),
     zip_code: z.string(),
-    person_id: z.coerce.number()
+    person_id: z.number()
   });
 
   const { street, city, state, zip_code, person_id } = registerBodySchema.parse(

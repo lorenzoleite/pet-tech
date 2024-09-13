@@ -7,20 +7,24 @@ export async function findAddress(
   reply: FastifyReply
 ) {
   const registerParamsSchema = z.object({
-    id: z.coerce.number()
+    personId: z.coerce.number()
   });
 
-  const registerBodySchema = z.object({
+  const registerQuerySchema = z.object({
     page: z.coerce.number(),
     limit: z.coerce.number()
   });
 
-  const { id } = registerParamsSchema.parse(request.params);
-  const { page, limit } = registerBodySchema.parse(request.body);
+  const { personId } = registerParamsSchema.parse(request.params);
+  const { page, limit } = registerQuerySchema.parse(request.query);
 
   const findAddressByPersonUseCase = makeFindAddressByPersonUseCase();
 
-  const address = await findAddressByPersonUseCase.handler(id, page, limit);
+  const address = await findAddressByPersonUseCase.handler(
+    personId,
+    page,
+    limit
+  );
 
   reply.status(200).send(address);
 }
